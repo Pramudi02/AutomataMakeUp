@@ -1,14 +1,20 @@
 def postal_code_validator(code):
+    # Initial state q0
     state = 0
 
     for ch in code:
+        # Transition: If input is a digit (0-9)
         if ch.isdigit():
-            state += 1
+            state += 1 # Move to next state (q1, q2, ... q5)
+            
+            # If we exceed 5 digits, we go to a dead state (REJECT)
             if state > 5:
                 return "REJECT"
         else:
+            # Transition: If input is not a digit, go to dead state (REJECT)
             return "REJECT"
 
+    # Final State Check: We must be exactly in state q5 (5 digits read)
     if state == 5:
         return "ACCEPT"
     else:
