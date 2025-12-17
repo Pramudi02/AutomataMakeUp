@@ -4,20 +4,20 @@ import os
 # Add the backend directory to the system path so we can import the PDA logic
 sys.path.append(os.path.join(os.path.dirname(__file__), 'backend'))
 
-from pda_logic import PostalCodePDA
+from nic_pda_logic import NICPDA
 
 def main():
-    pda = PostalCodePDA()
+    pda = NICPDA()
     
     print("="*50)
-    print("Sri Lankan Postal Code Validator (Terminal Mode)")
+    print("Sri Lankan NIC Validator (Terminal Mode)")
     print("="*50)
     print("Type 'exit' or 'quit' to stop.")
     print("-" * 50)
 
     while True:
         try:
-            user_input = input("\nEnter Postal Code: ").strip()
+            user_input = input("\nEnter NIC Number: ").strip()
             
             if user_input.lower() in ['exit', 'quit']:
                 print("Exiting...")
@@ -29,8 +29,7 @@ def main():
             print(f"Message: {result['message']}")
             
             if result['accepted']:
-                print(f"District: {result['district']}")
-                print(f"Province: {result['province']}")
+                print(f"Type: {result['type']}")
             
             print("\nExecution Log:")
             for step in result['execution_log']:
